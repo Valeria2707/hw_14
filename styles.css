@@ -1,9 +1,68 @@
 .container {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .container > div {
-  flex-grow: 1;
-  border: 1px solid black;
-  min-height: 20px;
+  width: 30%;
+  padding:10px  10px 20px 20px ;
+  border: 2px solid black;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  background-color: pink;
+  border-radius: 20px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.container > div:last-child{
+  cursor: auto;
+}
+
+.nameProduct{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.btnBuy{
+  border-radius: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0;
+  border: 2px solid black;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.results{
+  padding: 50px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: plum;
+  margin-top: 50px;
+  border-radius: 20px;
+  border: 2px solid black;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.btnClose{
+  font-size: 20px;
+  width: 40px;
+  height: 30px;
+  font-weight: bold;
+  background-color: pink;
+  border-radius: 20%;
+  position: absolute;
+  left: 97%;
+  top: -10px;
 }
