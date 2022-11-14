@@ -48,10 +48,10 @@
   margin-top: 50px;
   border-radius: 20px;
   border: 2px solid black;
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 20px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   position: relative;
 }
 
@@ -65,4 +65,50 @@
   position: absolute;
   left: 97%;
   top: -10px;
+}
+
+.formMain{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+}
+
+.element_form{
+  font-size: 16px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 2px solid black;
+  color: black;
+  width: 50%;
+  padding: 10px;
+}
+
+.element_form_radio{
+  font-size: 18px;
+  margin: 0;
+  font-weight: 200;
+}
+
+.saveBtn{
+  font-size: 20px;
+  width: 30%;
+  font-weight: bold;
+  background-color: pink;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+
+.titleOrder{
+  font-size: 30px;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.textForm{
+  font-size: 20px;
+  margin: 0;
 }
