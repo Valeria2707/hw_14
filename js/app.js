@@ -200,8 +200,8 @@ function showMessage() {
 
 function saveInformation() {
   const name = document.forms.formMain.name.value;
-  const Surname = document.forms.formMain.Surname.value;
-  const Lastname = document.forms.formMain.Lastname.value;
+  const surname = document.forms.formMain.Surname.value;
+  const lastname = document.forms.formMain.Lastname.value;
   const selectedCity = document.forms.formMain.city.value;
   const storage = document.forms.formMain.storage.value;
   const selectedPay = document.forms.formMain.pay.value;
@@ -211,10 +211,10 @@ function saveInformation() {
   const buyName = buy.name;
   const buyPrice = buy.price;
   const buyDecription = buy.description;
-  const datePeople = "<b>" + "Дані для доставки:" + "</b>" + Lastname + '<br>' + name + '<br>' + Surname + '<br>' + selectedCity + '<br>' + storage + '<br>' + selectedPay + '<br>' + count + '<br>' + comments + '<br>';
+  const datePeople = "<b>" + "Дані для доставки:" + "</b>" + lastname + '<br>' + name + '<br>' + surname + '<br>' + selectedCity + '<br>' + storage + '<br>' + selectedPay + '<br>' + count + '<br>' + comments + '<br>';
   const dateGoods = "<b>" + "Дані про товар:" + "</b>" + buyName + '<br>' + buyPrice + '<br>' + buyDecription;
 
-  if (Lastname === '' || name === '' || Surname === '' || storage === '' || count === '' || selectedPayValidate === null) {
+  if (lastname === '' || name === '' || surname === '' || storage === '' || count === '' || selectedPayValidate === null) {
     alert("Заповніть всі поля");
   }
   else {
