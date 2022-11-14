@@ -41,7 +41,6 @@ function showDetails(event) {
   elemName.textContent = productInf.name;
   elemName.classList.add('nameProduct');
   container.appendChild(elemName);
-  console.log(elemName.textContents);
 
   const elemPrice = document.createElement('div');
   elemPrice.textContent = "Ціна: " + productInf.price + "$";
