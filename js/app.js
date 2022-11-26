@@ -273,9 +273,17 @@ function saveInformation() {
   const name = document.forms.formMain.name.value;
   const surname = document.forms.formMain.Surname.value;
   const lastname = document.forms.formMain.Lastname.value;
+  const selectedCity = document.forms.formMain.city.value;
   const storage = document.forms.formMain.storage.value;
   const count = document.forms.formMain.count.value;
   let selectedPayValidate = document.querySelector('input[name="pay"]:checked');
+  const comments = document.forms.formMain.description.value;
+  var selectedPayValidate = document.querySelector('input[name="pay"]:checked');
+  const buyName = buy.name;
+  const buyPrice = buy.price;
+  const buyDecription = buy.description;
+  const datePeople = "<b>" + "Дані для доставки:" + "</b>" + lastname + '<br>' + name + '<br>' + surname + '<br>' + selectedCity + '<br>' + storage + '<br>' + selectedPay + '<br>' + count + '<br>' + comments + '<br>';
+  const dateGoods = "<b>" + "Дані про товар:" + "</b>" + buyName + '<br>' + buyPrice + '<br>' + buyDecription;
 
   if (lastname === '' || name === '' || surname === '' || storage === '' || count === '' || selectedPayValidate === null) {
     alert("Заповніть всі поля");
