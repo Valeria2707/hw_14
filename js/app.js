@@ -1,15 +1,24 @@
 let buy;
+let myOrder = JSON.parse(localStorage.getItem('myOrder')) || [];
 
 function showCategories() {
   const container = document.querySelector('.categories');
-
+  const blockForElement = document.createElement('div');
+  blockForElement.classList.add('element');
+  container.appendChild(blockForElement);
   for (let i = 0; i < data.length; i++) {
     const elem = document.createElement('div');
     elem.textContent = data[i].name;
     elem.setAttribute('data-category', i);
     elem.addEventListener('click', showProducts);
-    container.appendChild(elem);
+    blockForElement.appendChild(elem);
   }
+  const buttonMyOrder = document.createElement('button');
+  buttonMyOrder.classList.add('btnOrder');
+  buttonMyOrder.textContent = 'my Order';
+  container.appendChild(buttonMyOrder);
+
+  buttonMyOrder.addEventListener('click', showOrder);
 }
 
 // handler of click on categories
@@ -35,7 +44,6 @@ function showDetails(event) {
   const productInf = data[categoryIndex].products[productIndex];
   const container = document.querySelector('.details');
   container.innerHTML = '';
-
 
   const elemName = document.createElement('div');
   elemName.textContent = productInf.name;
@@ -68,7 +76,6 @@ function showDetails(event) {
 function showMessage() {
   const elem = document.createElement('div');
   elem.classList.add('results');
-  //elem.textContent = 'Товар куплено!';
   document.body.appendChild(elem);
 
   const containerSecond = document.querySelector('.products');
@@ -198,14 +205,78 @@ function showMessage() {
   btn.addEventListener('click', saveInformation);
 }
 
+function orderList() {
+  const container = document.querySelector('.categories');
+  container.innerHTML = ''
+
+  const list = document.createElement('ol');
+  list.classList.add('list');
+  container.appendChild(list)
+  for (let i =0; i < myOrder.length; i++){
+    const itemPrice = document.createElement('li');
+    itemPrice.textContent = myOrder[i].buyPrice;
+    itemPrice.setAttribute('data-cat', i);
+    itemPrice.classList.add('price');
+    list.appendChild(itemPrice);
+    itemPrice.addEventListener('click', showMore);
+
+    const date = document.createElement('div');
+    date.textContent = myOrder[i].date;
+    itemPrice.appendChild(date);
+
+    const itemName = document.createElement('div');
+    itemName.textContent = myOrder[i].buyName;
+    itemName.classList.add('namee');
+    itemName.style.display = 'none';
+    itemPrice.appendChild(itemName);
+    
+    const itemdelete = document.createElement('button');
+    itemdelete.textContent = ' X';
+    itemdelete.setAttribute('id', `${myOrder[i].id}`);
+    itemdelete.classList.add('delete');
+    itemPrice.appendChild(itemdelete);
+    itemdelete.addEventListener('click', deleteOrder);
+  } 
+ }
+
+ 
+ function showMore(){
+  let text = this.closest('li').querySelector(".namee");
+  if (text.style.display === "none") {
+    text.style.display = "block";
+  } else {
+    text.style.display = "none";
+  }
+ }
+ 
+
+function showOrder(){
+  document.querySelector('.element').remove();
+  document.querySelector('.btnOrder').remove();
+  const containerSecond = document.querySelector('.products');
+  const containerThird = document.querySelector('.details');
+  containerSecond.innerHTML = '';
+  containerThird.innerHTML = '';
+  orderList()
+ }
+
+ function deleteOrder(event){
+  const id = event.target.getAttribute('id');
+  const actualOrders = JSON.parse(localStorage.getItem('myOrder')).filter(item => item.id != id);
+  myOrder = actualOrders;
+  localStorage.setItem('myOrder', JSON.stringify(myOrder))
+  orderList()
+ }
+
+
 function saveInformation() {
   const name = document.forms.formMain.name.value;
   const surname = document.forms.formMain.Surname.value;
   const lastname = document.forms.formMain.Lastname.value;
   const selectedCity = document.forms.formMain.city.value;
   const storage = document.forms.formMain.storage.value;
-  const selectedPay = document.forms.formMain.pay.value;
   const count = document.forms.formMain.count.value;
+  let selectedPayValidate = document.querySelector('input[name="pay"]:checked');
   const comments = document.forms.formMain.description.value;
   var selectedPayValidate = document.querySelector('input[name="pay"]:checked');
   const buyName = buy.name;
@@ -218,17 +289,32 @@ function saveInformation() {
     alert("Заповніть всі поля");
   }
   else {
-    const deleteForm = document.querySelector('.formMain');
-    deleteForm.innerHTML = '';
+  let today = new Date();
+  console.log(today);
 
-    const field = document.querySelector('.results');
-    field.innerHTML = datePeople + dateGoods;
+  const hours = today.getHours();
+  const minutes = today.getMinutes();
+  const seconds = today.getSeconds();
 
-    const buttonClose = document.createElement('button');
-    buttonClose.classList.add('btnClose');
-    buttonClose.textContent = 'X';
-    field.appendChild(buttonClose);
-    buttonClose.addEventListener('click', clickClose);
+  const day = today.getDate();
+  const month = today.getMonth();
+  const year = today.getFullYear();
+
+  const months = ['January', 'February', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'November', 'Dec'];
+  console.log(`${day} ${months[month]} ${year} ${hours}:${minutes}:${seconds}`);
+  let dateSave =  `${day} ${months[month]} ${year} ${hours}:${minutes}:${seconds}`;
+  console.log(dateSave);
+
+  const tel= {
+    buyName: buy.name,
+    buyPrice: buy.price,
+    date: dateSave,
+    id: +(Math.random() * 100000).toFixed(),
+  };
+
+  myOrder.push(tel);
+  localStorage.setItem('myOrder', JSON.stringify(myOrder));
+  clickClose();
   }
 }
 
