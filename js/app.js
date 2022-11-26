@@ -280,7 +280,6 @@ function saveInformation() {
   if (lastname === '' || name === '' || surname === '' || storage === '' || count === '' || selectedPayValidate === null) {
     alert("Заповніть всі поля");
   }
-  
   else {
   let today = new Date();
   console.log(today);
