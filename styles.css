@@ -27,7 +27,7 @@
   font-weight: bold;
 }
 
-.btnBuy{
+.btnBuy, .btnOrder{
   border-radius: 20px;
   width: 50%;
   margin-left: auto;
@@ -37,6 +37,13 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.categories, .element{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .results{
@@ -111,4 +118,31 @@
 .textForm{
   font-size: 20px;
   margin: 0;
+}
+
+.price{
+  position: relative;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgb(239, 209, 214);
+}
+
+.list{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.delete{
+  font-size: 20px;
+  width: 40px;
+  height: 30px;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 20%;
+  position: absolute;
+  left: 85%;
+  top: 20px;
 }
